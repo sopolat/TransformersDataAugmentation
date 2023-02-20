@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-SRC=~/PretrainedDataAugment/src
-CACHE=~/CACHE
+SRC=/content/TransformersDataAugmentation/src
+CACHE=/content/CACHE
 TASK=stsa
 
 for NUMEXAMPLES in 10;
 do
     for i in {0..14};
         do
-        RAWDATADIR=~/datasets/${TASK}/exp_${i}_${NUMEXAMPLES}
+        RAWDATADIR=/content/datasets/${TASK}/exp_${i}_${NUMEXAMPLES}
 
        # Baseline classifier
         python $SRC/bert_aug/bert_classifier.py --task $TASK  --data_dir $RAWDATADIR --seed ${i} --learning_rate $BERTLR --cache $CACHE > $RAWDATADIR/bert_baseline.log
