@@ -12,8 +12,8 @@ import numpy as np
 import torch
 from torch.utils.data import TensorDataset, DataLoader, RandomSampler, SequentialSampler
 
-from transformers.tokenization_gpt2 import GPT2Tokenizer
-from transformers.modeling_gpt2 import GPT2LMHeadModel
+from transformers import GPT2Tokenizer
+from transformers import GPT2LMHeadModel
 
 from transformers import AdamW
 from data_processors import get_task_processor
