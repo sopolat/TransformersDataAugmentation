@@ -3,7 +3,7 @@
 SRC=/content/TransformersDataAugmentation/src
 CACHE=/content/CACHE
 TASK=stsa
-
+BERTLR=0.00004
 for NUMEXAMPLES in 10;
 do
     for i in {0..0};
@@ -36,7 +36,7 @@ do
         cat $RAWDATADIR/train.tsv $GPT2DIR/cmodgpt2_aug_3.tsv > $GPT2DIR/train.tsv
         cp $RAWDATADIR/test.tsv $GPT2DIR/test.tsv
         cp $RAWDATADIR/dev.tsv $GPT2DIR/dev.tsv
-        python $SRC/bert_aug/bert_classifier.py --task $TASK --data_dir $GPT2DIR --seed ${i} --cache $CACHE > $RAWDATADIR/bert_gpt2_3.log
+        python $SRC/bert_aug/bert_classifier.py --task $TASK --data_dir $GPT2DIR --seed ${i} --learning_rate $BERTLR  --cache $CACHE > $RAWDATADIR/bert_gpt2_3.log
 
     #    #######################
     #    # Backtranslation DA Classifier
@@ -48,7 +48,7 @@ do
     cat $RAWDATADIR/train.tsv $BTDIR/bt_aug.tsv > $BTDIR/train.tsv
     cp $RAWDATADIR/test.tsv $BTDIR/test.tsv
     cp $RAWDATADIR/dev.tsv $BTDIR/dev.tsv
-    python $SRC/bert_aug/bert_classifier.py --task $TASK --data_dir $BTDIR --seed ${i} --cache $CACHE  > $RAWDATADIR/bert_bt.log
+    python $SRC/bert_aug/bert_classifier.py --task $TASK --data_dir $BTDIR --seed ${i} --learning_rate $BERTLR  --cache $CACHE  > $RAWDATADIR/bert_bt.log
 
    # #######################
    # # CBERT Classifier
@@ -60,7 +60,7 @@ do
     cat $RAWDATADIR/train.tsv $CBERTDIR/cbert_aug.tsv > $CBERTDIR/train.tsv
     cp $RAWDATADIR/test.tsv $CBERTDIR/test.tsv
     cp $RAWDATADIR/dev.tsv $CBERTDIR/dev.tsv
-    python $SRC/bert_aug/bert_classifier.py --task $TASK --data_dir $CBERTDIR --seed ${i} --cache $CACHE > $RAWDATADIR/bert_cbert.log
+    python $SRC/bert_aug/bert_classifier.py --task $TASK --data_dir $CBERTDIR --seed ${i} --learning_rate $BERTLR  --cache $CACHE > $RAWDATADIR/bert_cbert.log
 
    # #######################
    # # CMODBERT Classifier
@@ -72,7 +72,7 @@ do
     cat $RAWDATADIR/train.tsv $CMODBERTDIR/cmodbert_aug.tsv > $CMODBERTDIR/train.tsv
     cp $RAWDATADIR/test.tsv $CMODBERTDIR/test.tsv
     cp $RAWDATADIR/dev.tsv $CMODBERTDIR/dev.tsv
-    python $SRC/bert_aug/bert_classifier.py --task $TASK --data_dir $CMODBERTDIR --seed ${i} --cache $CACHE > $RAWDATADIR/bert_cmodbert.log
+    python $SRC/bert_aug/bert_classifier.py --task $TASK --data_dir $CMODBERTDIR --seed ${i} --learning_rate $BERTLR  --cache $CACHE > $RAWDATADIR/bert_cmodbert.log
 
    # #######################
    # # CMODBERTP Classifier
@@ -84,7 +84,7 @@ do
     cat $RAWDATADIR/train.tsv $CMODBERTPDIR/cmodbertp_aug.tsv > $CMODBERTPDIR/train.tsv
     cp $RAWDATADIR/test.tsv $CMODBERTPDIR/test.tsv
     cp $RAWDATADIR/dev.tsv $CMODBERTPDIR/dev.tsv
-    python $SRC/bert_aug/bert_classifier.py --task $TASK --data_dir $CMODBERTPDIR --seed ${i}  --cache $CACHE > $RAWDATADIR/bert_cmodbertp.log
+    python $SRC/bert_aug/bert_classifier.py --task $TASK --data_dir $CMODBERTPDIR --seed ${i} --learning_rate $BERTLR   --cache $CACHE > $RAWDATADIR/bert_cmodbertp.log
 
     done
 done
