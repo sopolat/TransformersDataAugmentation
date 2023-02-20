@@ -14,8 +14,8 @@ import torch
 import torch.nn.functional as F
 from torch.utils.data import TensorDataset, DataLoader, RandomSampler, SequentialSampler
 
-from transformers.tokenization_bert import BertTokenizer
-from transformers.modeling_bert import BertForMaskedLM, BertOnlyMLMHead
+from transformers import BertTokenizer
+from transformers import BertForMaskedLM, BertOnlyMLMHead
 
 from transformers import AdamW
 from data_processors import get_task_processor
@@ -220,7 +220,7 @@ def compute_dev_loss(model, dev_dataloader):
         _, input_ids, input_mask, masked_ids, label_lengths = batch
         inputs = {'input_ids': batch[1],
                   'attention_mask': batch[2],
-                  'masked_lm_labels': batch[3]}
+                  'labels': batch[3]}
 
         outputs = model(**inputs)
         loss = outputs[0]
@@ -357,7 +357,7 @@ def train_cmodbertp_and_augment(args):
             _, input_ids, input_mask, masked_ids, label_lengths = batch
             inputs = {'input_ids': batch[1],
                       'attention_mask': batch[2],
-                      'masked_lm_labels': batch[3]}
+                      'labels': batch[3]}
 
             outputs = model(**inputs)
             loss = outputs[0]
