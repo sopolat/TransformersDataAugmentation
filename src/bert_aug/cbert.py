@@ -230,7 +230,7 @@ def compute_dev_loss(model, dev_dataloader):
         inputs = {'input_ids': batch[1],
                   'attention_mask': batch[2],
                   'token_type_ids': batch[3],
-                  'masked_lm_labels': batch[4]}
+                  'labels': batch[4]}
 
         outputs = model(**inputs)
         loss = outputs[0]
@@ -358,7 +358,7 @@ def train_cbert_and_augment(args):
             inputs = {'input_ids': batch[1],
                       'attention_mask': batch[2],
                       'token_type_ids': batch[3],
-                      'masked_lm_labels': batch[4]}
+                      'labels': batch[4]}
 
             outputs = model(**inputs)
             loss = outputs[0]
