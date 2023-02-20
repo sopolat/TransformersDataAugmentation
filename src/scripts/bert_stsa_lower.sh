@@ -6,7 +6,7 @@ TASK=stsa
 
 for NUMEXAMPLES in 10;
 do
-    for i in {0..14};
+    for i in {0..0};
         do
         RAWDATADIR=/content/datasets/${TASK}/exp_${i}_${NUMEXAMPLES}
 
